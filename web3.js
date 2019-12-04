@@ -150,9 +150,12 @@ class InpageBridge {
 				this._onMessage(data);
 			}
 		});
-	
+		window.onload = (event) => {
+  			window.ReactNativeWebView.postMessage('loaded');
+			this._ping();
+		};
 		window.addEventListener('load', () => {
-			this.window.ReactNativeWebView.postMessage('load');
+			window.ReactNativeWebView.postMessage('load');
 			this._ping();
 		});
 	}

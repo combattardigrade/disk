@@ -133,13 +133,15 @@ class InpageBridge {
 	}
 
 	_subscribe() {
+		window.ReactNativeWebView.postMessage('subcri');
 		window.addEventListener('message', ({ data }) => {
 			if (data.toString().indexOf('INPAGE_RESPONSE') !== -1 || data.toString().indexOf('STATE_UPDATE') !== -1) {
 				this._onMessage(data);
 			}
 		});
-
+	
 		window.addEventListener('load', () => {
+			window.ReactNativeWebView.postMessage('load');
 			this._ping();
 		});
 	}

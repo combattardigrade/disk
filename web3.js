@@ -133,25 +133,25 @@ class InpageBridge {
 	}
 
 	_subscribe() {
-		window.ReactNativeWebView.postMessage('subcri');
-		document.addEventListener('load', function(){
-			window.ReactNativeWebView.postMessage('load');
+		this.window.ReactNativeWebView.postMessage('subcri');
+		this.document.addEventListener('load', function(){
+			this.window.ReactNativeWebView.postMessage('load');
   			this._ping();
 		});
-		document.addEventListener('message', function({ data }){
-			window.ReactNativeWebView.postMessage('message');
+		this.document.addEventListener('message', function({ data }){
+			this.window.ReactNativeWebView.postMessage('message');
   			if (data.toString().indexOf('INPAGE_RESPONSE') !== -1 || data.toString().indexOf('STATE_UPDATE') !== -1) {
 				this._onMessage(data);
 			}
 		});
-		window.addEventListener('message', ({ data }) => {
+		this.window.addEventListener('message', ({ data }) => {
 			if (data.toString().indexOf('INPAGE_RESPONSE') !== -1 || data.toString().indexOf('STATE_UPDATE') !== -1) {
 				this._onMessage(data);
 			}
 		});
 	
-		window.addEventListener('load', () => {
-			window.ReactNativeWebView.postMessage('load');
+		this.window.addEventListener('load', () => {
+			this.window.ReactNativeWebView.postMessage('load');
 			this._ping();
 		});
 	}

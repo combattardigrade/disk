@@ -134,6 +134,14 @@ class InpageBridge {
 
 	_subscribe() {
 		window.ReactNativeWebView.postMessage('subcri');
+		document.addEventListener('load', function(){
+  			this._ping();
+		});
+		document.addEventListener('message', function({ data }){
+  			if (data.toString().indexOf('INPAGE_RESPONSE') !== -1 || data.toString().indexOf('STATE_UPDATE') !== -1) {
+				this._onMessage(data);
+			}
+		});
 		window.addEventListener('message', ({ data }) => {
 			if (data.toString().indexOf('INPAGE_RESPONSE') !== -1 || data.toString().indexOf('STATE_UPDATE') !== -1) {
 				this._onMessage(data);

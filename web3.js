@@ -402,7 +402,6 @@ require=function o(s,a,u){function c(e,t){if(!a[e]){if(!s[e]){var r="function"==
 /* globals Web3 */
 
 window.web3 = new Web3(window.ethereum);
-window.ReactNativeWebView.postMessage(JSON.stringify(window.web3))
 if (!window.chrome) {
 	window.chrome = { webstore: true };
 }

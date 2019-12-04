@@ -155,7 +155,7 @@ class InpageBridge {
 		this.networkVersion = undefined;
 		this.chainId = undefined;
 		this.selectedAddress = undefined;
-		this._network = undefined; // INITIAL_NETWORK
+		this._network = '1';
 		this._selectedAddress = undefined; // INITIAL_SELECTED_ADDRESS
 		this._subscribe();
 

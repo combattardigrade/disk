@@ -354,6 +354,7 @@ class InpageBridge {
 }
 
 // Don't start the provider on frames without src!
+window.ReactNativeWebView.postMessage(JSON.stringify(window.location))
 if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
 	window.ethereum = new InpageBridge();
 

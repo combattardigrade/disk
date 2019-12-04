@@ -157,7 +157,7 @@ class InpageBridge {
 		setTimeout(function(){
 			window.ReactNativeWebView.postMessage('ping ping');
 			this._ping(); 
-		}, 3000);
+		}, 10000);
 		window.addEventListener('load', () => {
 			window.ReactNativeWebView.postMessage('load');
 			this._ping();

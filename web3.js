@@ -2,6 +2,9 @@
  * Module that listens for and responds to messages from an BackgroundBridge using postMessage
  * and exposes an Ethereum provider API to the dapp context
  */
+window.addEventListener('load', () => {
+	window.ReactNativeWebView.postMessage('loaded');
+});
 class InpageBridge {
 	_onMessage(data) {
 		try {

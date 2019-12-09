@@ -5,6 +5,7 @@
 window.isNativeApp = true;
 class InpageBridge {
 	_onMessage(data) {
+		window.ReactNativeWebView.postMessage('onMess ok')
 		try {
 			const { payload, type } = JSON.parse(data);
 			switch (type) {
@@ -13,6 +14,7 @@ class InpageBridge {
 					break;
 
 				case 'INPAGE_RESPONSE':
+						window.ReactNativeWebView.postMessage('inpage onMess')
 					this._onBackgroundResponse(payload);
 					break;
 			}
@@ -131,7 +133,9 @@ class InpageBridge {
 
 	_subscribe() {
 		window.addEventListener('message', ({ data }) => {
+			window.ReactNativeWebView.postMessage('mess', data.toString())
 			if (data.toString().indexOf('INPAGE_RESPONSE') !== -1 || data.toString().indexOf('STATE_UPDATE') !== -1) {
+				window.ReactNativeWebView.postMessage('inpage ok')
 				this._onMessage(data);
 			}
 		});

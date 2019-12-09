@@ -2,9 +2,6 @@
  * Module that listens for and responds to messages from an BackgroundBridge using postMessage
  * and exposes an Ethereum provider API to the dapp context
  */
-window.addEventListener('load', () => {
-	window.ReactNativeWebView.postMessage('loaded');
-});
 class InpageBridge {
 	_onMessage(data) {
 		try {
@@ -136,7 +133,6 @@ class InpageBridge {
 	}
 
 	_subscribe() {
-		window.ReactNativeWebView.postMessage('subcri');
 		window.addEventListener('message', ({ data }) => {
 			window.ReactNativeWebView.postMessage('message win');
 			if (data.toString().indexOf('INPAGE_RESPONSE') !== -1 || data.toString().indexOf('STATE_UPDATE') !== -1) {
@@ -147,10 +143,11 @@ class InpageBridge {
   			window.ReactNativeWebView.postMessage('loaded');
 			this._ping();
 		};
-		window.addEventListener('load', () => {
-			window.ReactNativeWebView.postMessage('load');
-			this._ping();
-		});
+		if (window.ReactNativeWebView.postMessage){
+			this._ping();   
+		} else {
+			setTimeout(function(){ this._ping(); }, 3000);
+		}
 	}
 
 	/**

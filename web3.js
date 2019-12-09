@@ -22,7 +22,7 @@ class InpageBridge {
 	}
 
 	_onBackgroundResponse({ __mmID, error, response }) {
-		window.ReactNativeWebView.postMessage('request processs');
+		window.ReactNativeWebView.postMessage('request processs ' + __mmID);
 		const callback = this._pending[`${__mmID}`];
 		if (!error && response.error) {
 			error = response.error;
@@ -34,7 +34,7 @@ class InpageBridge {
 				...response
 			};
 		}
-		if(callback){ window.ReactNativeWebView.postMessage('call back'); } else { window.ReactNativeWebView.postMessage('no callback'); }
+		if (callback) { window.ReactNativeWebView.postMessage('call back'); } else { window.ReactNativeWebView.postMessage('no callback'); }
 		callback && callback(error, response);
 		delete this._pending[`${__mmID}`];
 	}
@@ -141,7 +141,7 @@ class InpageBridge {
 		} else {
 			setTimeout(() => {
 				this._ping();
-			},300)
+			}, 300)
 		}
 
 		window.addEventListener('load', () => {

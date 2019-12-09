@@ -41,6 +41,12 @@ class InpageBridge {
 		const oldNetwork = this._network;
 		this._selectedAddress = state.selectedAddress && state.selectedAddress.toLowerCase();
 		this._network = state.network;
+		this.selectedAddress = this._selectedAddress;
+		this.networkVersion = this._network;
+		if (!isNaN(this._network)) {
+			this.chainId = 'Ox' + parseInt(this._network, 10).toString(16);
+		}
+
 		oldAddress !== undefined &&
 			this._selectedAddress !== oldAddress &&
 			this.emit('accountsChanged', [this._selectedAddress]);
@@ -95,7 +101,7 @@ class InpageBridge {
 			default:
 				throw new Error(
 					`This provider requires a callback to be passed when executing methods like ${
-						action.method
+					action.method
 					}. This is because all methods are always executed asynchronously. See https://git.io/fNi6S for more information.`
 				);
 		}
@@ -132,10 +138,14 @@ class InpageBridge {
 				this._onMessage(data);
 			}
 		});
-
-		window.addEventListener('load', () => {
-			this._ping();
-		});
+		const _pingStart = () => {
+			if (window.ReactNativeWebView.postMessage) {
+				this._ping();
+			} else {
+				setTimeout(() => { _pingStart() }, 1000);
+			}
+		}
+		_pingStart()
 	}
 
 	/**
@@ -146,6 +156,9 @@ class InpageBridge {
 		this._connected = false;
 		this.events = {};
 		this.isMetaMask = true;
+		this.networkVersion = undefined;
+		this.chainId = undefined;
+		this.selectedAddress = undefined;
 		this._network = undefined; // INITIAL_NETWORK
 		this._selectedAddress = undefined; // INITIAL_SELECTED_ADDRESS
 		this._subscribe();
@@ -375,8 +388,8 @@ if (window.location.protocol === 'http:' || window.location.protocol === 'https:
 					// eslint-disable-next-line no-console
 					console.warn(
 						'Heads up! ethereum._metamask exposes methods that have ' +
-							'not been standardized yet. This means that these methods may not be implemented ' +
-							'in other dapp browsers and may be removed from MetaMask in the future.'
+						'not been standardized yet. This means that these methods may not be implemented ' +
+						'in other dapp browsers and may be removed from MetaMask in the future.'
 					);
 				window.ethereum._warned = true;
 				return obj[prop];

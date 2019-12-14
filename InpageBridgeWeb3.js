@@ -138,14 +138,6 @@ class InpageBridge {
 				this._onMessage(data);
 			}
 		});
-		const _pingStart = () => {
-			if (window.ReactNativeWebView.postMessage) {
-				this._ping();
-			} else {
-				setTimeout(() => { _pingStart() }, 1000);
-			}
-		}
-        _pingStart()
         
         window.addEventListener('load', () => {
 			this._ping();

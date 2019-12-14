@@ -411,6 +411,4 @@ if (!window.chrome) {
 	window.chrome = { webstore: true };
 }
 
-if(!!window.web3 || !!window.ethereum){
-window.location.reload();
-}
+true;

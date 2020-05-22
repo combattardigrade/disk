@@ -1,5 +1,4 @@
-[
-  {
+[{
     "title": "Wefinex",
     "link": "https://www.exness.com/a/uk4bt99m",
     "img": "imgExness",
@@ -23,9 +22,8 @@
     "blank": true,
   },
   {
-    "title:" "NagaTrade",
+    "title": "NagaTrade",
     "link": "https://trade.nagatrade.com/authorize/register?ref=5ea284d2a2170",
     "img": "imgNaga",
     "blank": true,
-  },
-]
+  }]

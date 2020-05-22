@@ -1,12 +1,31 @@
 [
   {
-    "img": "https://www.w3schools.com/w3css/img_lights.jpg",
-    "title": "Breakfast",
-    "link": "https://www.facebook.com/",
+    title: "Wefinex",
+    link: "https://www.exness.com/a/uk4bt99m",
+    img: "imgExness",
   },
   {
-    "img": "https://www.w3schools.com/w3css/img_snowtops.jpg",
-    "title": "Tasty burger",
-    "link": "https://www.facebook.com/123",
-  }
+    title: "Wefinex",
+    link: "https://wefinex.net/reg?r=4ADE545",
+    img: "imgWefinex",
+  },
+  {
+    title: "Youtube",
+    youtube: true,
+    link:
+      "https://www.youtube.com/embed/videoseries?list=PLJiGAeuHLIAZWhJwi-qnNOUp-8Tsc7Qw-",
+    img: "youtube",
+  },
+  {
+    title: "Wefinex",
+    link: "https://www.binance.com/en/futures/ref/41457556",
+    img: "imgBinance",
+    blank: true,
+  },
+  {
+    title: "NagaTrade",
+    link: "https://trade.nagatrade.com/authorize/register?ref=5ea284d2a2170",
+    img: "imgNaga",
+    blank: true,
+  },
 ]
